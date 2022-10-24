@@ -37,7 +37,7 @@ android {
     }
     //com.github.xiaoxing1992
     afterEvaluate {
-        publishing = {
+        publishing {
             def versionName = "1.0.0"
             //当前版本依赖库版本号，这个jitpack不会使用到 只是我们开发者自己查看
             publications {
