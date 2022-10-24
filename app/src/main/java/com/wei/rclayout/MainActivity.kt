@@ -1,10 +1,10 @@
-package com.wei.rclayoutproject
+package com.wei.rclayout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.SkinAppCompatDelegateImpl
-import com.wei.rclayoutproject.databinding.ActivityMainBinding
+import com.wei.rclayout.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

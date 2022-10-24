@@ -1,4 +1,4 @@
-package com.wei.rclayoutproject;
+package com.wei.rclayout;
 
 import android.content.Context;
 import android.util.AttributeSet;

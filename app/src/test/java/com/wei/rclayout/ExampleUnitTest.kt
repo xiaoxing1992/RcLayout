@@ -1,4 +1,4 @@
-package com.wei.rclayoutproject
+package com.wei.rclayout
 
 import org.junit.Test
 

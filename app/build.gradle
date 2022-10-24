@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.wei.rclayoutproject'
+    namespace 'com.wei.rclayout'
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.wei.rclayoutproject"
+        applicationId "com.wei.rclayout"
         minSdk 19
         targetSdk 30
         versionCode 1
