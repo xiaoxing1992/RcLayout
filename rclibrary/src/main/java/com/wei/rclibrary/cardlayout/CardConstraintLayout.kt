@@ -1,0 +1,94 @@
+package com.wei.rclibrary.cardlayout
+
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.util.AttributeSet
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import skin.support.widget.SkinCompatBackgroundHelper
+import skin.support.widget.SkinCompatSupportable
+
+class CardConstraintLayout @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr), SkinCompatSupportable {
+
+    private val presenter = CardViewPresenter(this)
+    private val backgroundTintHelper = SkinCompatBackgroundHelper(this)
+
+    init {
+        presenter.loadAttrs(context, attrs)
+        presenter.bindStyle()
+
+        backgroundTintHelper.loadFromAttributes(attrs, defStyleAttr)
+    }
+
+    fun setRadius(
+        cornerRadius: Float
+    ) {
+        presenter.setRadius(cornerRadius)
+    }
+
+    //fun setStroke(strokeWidth: Float, @ColorInt strokeColor: Int) {
+    //    presenter.setStroke(strokeWidth, strokeColor)
+    //}
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        presenter.onSizeChanged(w, h)
+        super.onSizeChanged(w, h, oldw, oldh)
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        if (presenter.aspectRatio > 0) {
+            val width = measuredWidth
+            val height = (width / presenter.aspectRatio).toInt()
+            super.onMeasure(
+                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+            )
+        }
+    }
+
+    override fun draw(canvas: Canvas) {
+        super.draw(canvas)
+        presenter.drawStroke(canvas)
+    }
+
+    fun changeColor(
+        @ColorRes backgroundNormalColorRes: Int,
+        @ColorRes backgroundPressedColorRes: Int? = null,
+        @ColorRes strokeColorRes: Int? = null
+    ) {
+        changeColorInt(
+            backgroundNormalColor = ContextCompat.getColor(context, backgroundNormalColorRes),
+            backgroundPressedColor = if (backgroundPressedColorRes == null) null else ContextCompat.getColor(
+                context, backgroundPressedColorRes
+            ),
+            strokeColor = if (strokeColorRes == null) Color.TRANSPARENT else ContextCompat.getColor(
+                context, strokeColorRes
+            )
+        )
+    }
+
+    fun changeColorInt(
+        @ColorInt backgroundNormalColor: Int,
+        @ColorInt backgroundPressedColor: Int? = null,
+        @ColorInt strokeColor: Int? = null
+    ) {
+        presenter.setupBackgroundDrawable(backgroundNormalColor, backgroundPressedColor)
+        presenter.changeStrokeColor(strokeColor ?: Color.TRANSPARENT)
+        presenter.bindStyle(true)
+    }
+
+    override fun setBackgroundResource(resid: Int) {
+        super.setBackgroundResource(resid)
+        backgroundTintHelper.onSetBackgroundResource(resid)
+    }
+
+    override fun applySkin() {
+        backgroundTintHelper.applySkin()
+    }
+}

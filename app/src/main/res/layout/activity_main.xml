@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wei.rclibrary.RCConstraintLayout
+    <com.wei.rclibrary.cardlayout.CardConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:background="@color/black"
-        app:clip_background="true"
-        app:round_corner="12dp">
+        android:layout_height="200dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="50dp"
+        android:background="#80DFECEF"
+        app:cv_card_radius="26dp"
+        app:cv_card_stroke_color="@color/black"
+        app:cv_card_stroke_width="1dp">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="200dp" />
-    </com.wei.rclibrary.RCConstraintLayout>
+    </com.wei.rclibrary.cardlayout.CardConstraintLayout>
 
-</FrameLayout>
+</LinearLayout>
