@@ -26,6 +26,12 @@ open class CardScrollView @JvmOverloads constructor(
         presenter.setRadius(cornerRadius)
     }
 
+    fun setStrokeWidth(
+        cornerRadius: Float
+    ) {
+        presenter.changeStrokeWidth(cornerRadius)
+    }
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         presenter.onSizeChanged(w, h)
         super.onSizeChanged(w, h, oldw, oldh)
