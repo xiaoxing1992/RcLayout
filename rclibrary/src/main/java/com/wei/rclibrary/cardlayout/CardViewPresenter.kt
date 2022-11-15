@@ -88,7 +88,7 @@ internal class CardViewPresenter(private val view: View) : SkinCompatHelper() {
     }
 
     fun setupBackgroundDrawable(backgroundNormalColor: Int?, backgroundPressedColor: Int?) {
-        this.contentBackgroundDrawable = RippleBackgroundHelper.createBackground(
+        this.contentBackgroundDrawable = RippleBackgroundHelper.createMaskBackground(
             backgroundNormalColor, backgroundPressedColor
         )
     }
