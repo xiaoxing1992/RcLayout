@@ -4,23 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wei.rclibrary.cardlayout.CardConstraintLayout
+    <com.wei.rclayout.MBCardFrameLayout
         android:id="@+id/test_view"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="250dp"
         android:layout_marginRight="50dp"
-        android:background="#80DFECEF"
-        app:cv_background_color="#FFF7F7F7"
-        app:cv_background_color_pressed="#2A000000"
-        app:cv_card_radius="4dp"
-        app:cv_card_stroke_color="@color/black"
-        app:cv_card_stroke_width="1dp">
+        app:mb_card_background_color="@color/cardview_dark_background"
+        app:mb_card_background_color_pressed="#2A000000"
+        app:mb_card_corner_radius="4dp"
+        app:mb_card_stroke_color="@color/black"
+        app:mb_card_stroke_width="3dp">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="200dp" />
-    </com.wei.rclibrary.cardlayout.CardConstraintLayout>
+    </com.wei.rclayout.MBCardFrameLayout>
 
 </LinearLayout>

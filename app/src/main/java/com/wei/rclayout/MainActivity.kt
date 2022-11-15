@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.testView.setOnClickListener {
-            binding.testView.setStrokeWidth(20f)
+            //binding.testView.setStrokeWidth(20f,)
         }
     }
 

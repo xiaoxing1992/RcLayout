@@ -93,7 +93,8 @@ internal class CardViewPresenter(private val view: View) : SkinCompatHelper() {
         )
     }
 
-    fun changeStrokeColor(@ColorInt strokeColor: Int) {
+    fun changeStrokeColor(@ColorInt color: Int) {
+        strokeColor = color
         if (strokeWidth > 0) {
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = strokeWidth
@@ -101,9 +102,13 @@ internal class CardViewPresenter(private val view: View) : SkinCompatHelper() {
         }
     }
 
-    fun changeStrokeWidth(strokeWidth: Float) {
+    fun changeStrokeWidth(width: Float) {
+
+        strokeWidth = width
         if (strokeWidth > 0) {
+            paint.style = Paint.Style.STROKE
             paint.strokeWidth = strokeWidth
+            paint.color = strokeColor
         }
     }
 
