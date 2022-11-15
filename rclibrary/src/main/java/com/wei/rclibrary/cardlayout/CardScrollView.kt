@@ -9,7 +9,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 
-class CardScrollView @JvmOverloads constructor(
+open class CardScrollView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : NestedScrollView(context, attrs, defStyleAttr) {
 

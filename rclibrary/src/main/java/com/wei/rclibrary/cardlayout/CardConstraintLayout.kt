@@ -8,21 +8,16 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import skin.support.widget.SkinCompatBackgroundHelper
-import skin.support.widget.SkinCompatSupportable
 
-class CardConstraintLayout @JvmOverloads constructor(
+open class CardConstraintLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr), SkinCompatSupportable {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val presenter = CardViewPresenter(this)
-    private val backgroundTintHelper = SkinCompatBackgroundHelper(this)
 
     init {
         presenter.loadAttrs(context, attrs)
         presenter.bindStyle()
-
-        backgroundTintHelper.loadFromAttributes(attrs, defStyleAttr)
     }
 
     fun setRadius(
@@ -81,14 +76,5 @@ class CardConstraintLayout @JvmOverloads constructor(
         presenter.setupBackgroundDrawable(backgroundNormalColor, backgroundPressedColor)
         presenter.changeStrokeColor(strokeColor ?: Color.TRANSPARENT)
         presenter.bindStyle(true)
-    }
-
-    override fun setBackgroundResource(resid: Int) {
-        super.setBackgroundResource(resid)
-        backgroundTintHelper.onSetBackgroundResource(resid)
-    }
-
-    override fun applySkin() {
-        backgroundTintHelper.applySkin()
     }
 }

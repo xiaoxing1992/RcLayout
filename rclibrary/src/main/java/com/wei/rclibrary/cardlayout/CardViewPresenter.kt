@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import androidx.annotation.ColorInt
-import app.wei.cardlayout.RippleBackgroundHelper
 import com.wei.rclibrary.R
+import skin.support.widget.SkinCompatHelper
 
-internal class CardViewPresenter(private val view: View) {
+internal class CardViewPresenter(private val view: View) : SkinCompatHelper() {
 
     private var cornerRadius = 0f
     var aspectRatio = 0f
@@ -103,6 +103,12 @@ internal class CardViewPresenter(private val view: View) {
 
     fun bindStyle(forceBind: Boolean = false) {
         if (contentBackgroundDrawable != null || forceBind) {
+            view.background = contentBackgroundDrawable
+        }
+    }
+
+    override fun applySkin() {
+        if (contentBackgroundDrawable != null) {
             view.background = contentBackgroundDrawable
         }
     }

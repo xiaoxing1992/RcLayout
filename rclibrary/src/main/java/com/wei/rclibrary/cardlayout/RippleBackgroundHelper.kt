@@ -1,4 +1,4 @@
-package app.wei.cardlayout
+package com.wei.rclibrary.cardlayout
 
 import android.content.res.ColorStateList
 import android.graphics.Color
