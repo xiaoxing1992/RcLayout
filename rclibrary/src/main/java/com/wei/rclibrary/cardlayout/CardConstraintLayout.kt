@@ -26,6 +26,12 @@ open class CardConstraintLayout @JvmOverloads constructor(
         presenter.setRadius(cornerRadius)
     }
 
+    fun setStrokeWidth(
+        cornerRadius: Float
+    ) {
+        presenter.changeStrokeWidth(cornerRadius)
+    }
+
     //fun setStroke(strokeWidth: Float, @ColorInt strokeColor: Int) {
     //    presenter.setStroke(strokeWidth, strokeColor)
     //}

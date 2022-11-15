@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.testView.setOnClickListener {
-            Toast.makeText(this, "xxxx", Toast.LENGTH_LONG).show()
+            binding.testView.setStrokeWidth(20f)
         }
     }
 

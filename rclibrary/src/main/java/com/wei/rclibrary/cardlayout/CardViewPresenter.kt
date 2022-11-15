@@ -88,7 +88,7 @@ internal class CardViewPresenter(private val view: View) : SkinCompatHelper() {
     }
 
     fun setupBackgroundDrawable(backgroundNormalColor: Int?, backgroundPressedColor: Int?) {
-        this.contentBackgroundDrawable = RippleBackgroundHelper.createMaskBackground(
+        this.contentBackgroundDrawable = RippleBackgroundHelper.createBackground(
             backgroundNormalColor, backgroundPressedColor
         )
     }
@@ -98,6 +98,12 @@ internal class CardViewPresenter(private val view: View) : SkinCompatHelper() {
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = strokeWidth
             paint.color = strokeColor
+        }
+    }
+
+    fun changeStrokeWidth(strokeWidth: Float) {
+        if (strokeWidth > 0) {
+            paint.strokeWidth = strokeWidth
         }
     }
 
