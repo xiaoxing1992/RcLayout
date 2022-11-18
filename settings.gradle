@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "RcLayoutProject"
 include ':app'
 include ':rclibrary'
+include ':paging-loader3'
