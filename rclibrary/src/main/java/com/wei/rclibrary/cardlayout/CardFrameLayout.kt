@@ -10,7 +10,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
 open class CardFrameLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val presenter = CardViewPresenter(this)
@@ -21,15 +21,9 @@ open class CardFrameLayout @JvmOverloads constructor(
     }
 
     fun setRadius(
-        cornerRadius: Float
+        cornerRadius: Float,
     ) {
         presenter.setRadius(cornerRadius)
-    }
-
-    fun setStrokeWidth(
-        cornerRadius: Float
-    ) {
-        presenter.changeStrokeWidth(cornerRadius)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -64,7 +58,7 @@ open class CardFrameLayout @JvmOverloads constructor(
     fun changeColor(
         @ColorRes backgroundNormalColorRes: Int,
         @ColorRes backgroundPressedColorRes: Int? = null,
-        @ColorRes strokeColorRes: Int? = null
+        @ColorRes strokeColorRes: Int? = null,
     ) {
         changeColorInt(
             backgroundNormalColor = ContextCompat.getColor(context, backgroundNormalColorRes),
@@ -80,7 +74,7 @@ open class CardFrameLayout @JvmOverloads constructor(
     fun changeColorInt(
         @ColorInt backgroundNormalColor: Int,
         @ColorInt backgroundPressedColor: Int? = null,
-        @ColorInt strokeColor: Int? = null
+        @ColorInt strokeColor: Int? = null,
     ) {
         presenter.setupBackgroundDrawable(backgroundNormalColor, backgroundPressedColor)
         presenter.changeStrokeColor(strokeColor ?: Color.TRANSPARENT)
