@@ -44,12 +44,12 @@ object RippleBackgroundHelper {
     }
 
     fun createMaskBackground(
-        backgroundColor: Int, pressedColor: Int?
+        backgroundColor: Int, pressedColor: Int?,
     ): Drawable? {
         if (pressedColor == null || pressedColor == Color.TRANSPARENT) {
             return null
         }
-        
+
         // ripple 的显示的背景颜色的是指定颜色的 50 % 透明 。 所以需要有加深颜色
         val doubleAlphaColor = ColorUtils.setAlphaComponent(
             pressedColor, min(2 * Color.alpha(pressedColor), 255)
