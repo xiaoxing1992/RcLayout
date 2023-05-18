@@ -1,21 +1,17 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
     id 'maven-publish'
-}
-
-task generateSourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier 'sources'
 }
 
 android {
     namespace 'com.wei.rclibrary'
-    compileSdk 31
+    compileSdk 31 as int
 
     defaultConfig {
-        minSdk 21
-        targetSdk 30
+        minSdk 21 as int
+        targetSdk 30 as int
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,33 +28,40 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+
+    kotlin {
+        jvmToolchain(11)
     }
-    //com.github.xiaoxing1992
-    afterEvaluate {
-        publishing {
-            def versionName = "1.0.0"
-            //当前版本依赖库版本号，这个jitpack不会使用到 只是我们开发者自己查看
-            publications {
-                release(MavenPublication) {
-                    from components.release //表示发布 release （jitpack 都不会使用到）
-                    groupId = 'com.wei.rclibrary' //这个是依赖库的组 ID
-                    artifactId = 'rclibrary' //依赖库的名称 （jitpack 都不会使用到）
-                    version = versionName
-                }
+}
+
+//com.github.xiaoxing1992
+afterEvaluate {
+    publishing {
+        def versionName = "1.0.0"
+        //当前版本依赖库版本号，这个jitpack不会使用到 只是我们开发者自己查看
+        publications {
+            release(MavenPublication) {
+                from components.release //表示发布 release （jitpack 都不会使用到）
+                groupId = 'com.wei.rclibrary' //这个是依赖库的组 ID
+                artifactId = 'rclibrary' //依赖库的名称 （jitpack 都不会使用到）
+                version = versionName
             }
-            repositories {
-                //下面这部分 ， 不是很清楚加不加  ， 但是最后加上
-                maven {
-                    def baseUrl = buildDir.getParent()
-                    def releaseRepoUrl = "$baseUrl/repos/release"
-                    def snapshotsRepoUrl = "$baseUrl/repos/snapshots"
-                    url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releaseRepoUrl
-                }
+        }
+        repositories {
+            //下面这部分 ， 不是很清楚加不加  ， 但是最后加上
+            maven {
+                def baseUrl = buildDir.getParent()
+                def releaseRepoUrl = "$baseUrl/repos/release"
+                def snapshotsRepoUrl = "$baseUrl/repos/snapshots"
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releaseRepoUrl
             }
         }
     }
+}
+
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
 }
 
 dependencies {

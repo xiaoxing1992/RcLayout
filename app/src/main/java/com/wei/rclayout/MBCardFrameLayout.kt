@@ -45,7 +45,7 @@ class MBCardFrameLayout @JvmOverloads constructor(
             backgroundPressedColor = ContextCompat.getColor(context, mbBackgroundPressedColor),
             strokeColor = ContextCompat.getColor(context, mbStrokeColor)
         )
-        setStrokeWidth(mbStrokeWidth.toFloat())
+        //setStrokeWidth(mbStrokeWidth.toFloat())
         setRadius(mbRadius.toFloat())
     }
 
