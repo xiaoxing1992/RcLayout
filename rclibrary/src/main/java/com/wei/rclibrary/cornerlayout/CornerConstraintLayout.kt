@@ -3,6 +3,7 @@ package com.wei.rclibrary.cornerlayout
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -54,6 +55,15 @@ open class CornerConstraintLayout @JvmOverloads constructor(
             if (backgroundPressedColorRes == null) null else ContextCompat.getColor(
                 context, backgroundPressedColorRes
             )
+        )
+        presenter.bindStyle()
+    }
+
+    fun changeColorInt(
+        @ColorInt backgroundNormalColorRes: Int, @ColorInt backgroundPressedColorRes: Int? = null
+    ) {
+        presenter.setupBackgroundDrawable(
+            backgroundNormalColorRes, backgroundPressedColorRes
         )
         presenter.bindStyle()
     }

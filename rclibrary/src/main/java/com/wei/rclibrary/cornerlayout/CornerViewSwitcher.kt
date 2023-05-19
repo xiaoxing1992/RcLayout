@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.widget.ViewSwitcher
+import androidx.annotation.ColorInt
 
 class CornerViewSwitcher @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -34,5 +35,14 @@ class CornerViewSwitcher @JvmOverloads constructor(
     override fun draw(canvas: Canvas) {
         presenter.drawClip(canvas)
         super.draw(canvas)
+    }
+
+    fun changeColorInt(
+        @ColorInt backgroundNormalColorRes: Int, @ColorInt backgroundPressedColorRes: Int? = null
+    ) {
+        presenter.setupBackgroundDrawable(
+            backgroundNormalColorRes, backgroundPressedColorRes
+        )
+        presenter.bindStyle()
     }
 }
