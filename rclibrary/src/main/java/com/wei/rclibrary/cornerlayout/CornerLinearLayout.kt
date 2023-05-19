@@ -1,0 +1,60 @@
+package com.wei.rclibrary.cornerlayout
+
+import android.content.Context
+import android.graphics.Canvas
+import android.util.AttributeSet
+import androidx.annotation.ColorRes
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContextCompat
+
+open class CornerLinearLayout @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayoutCompat(context, attrs, defStyleAttr) {
+
+    private val presenter = CornerViewPresenter(this)
+
+    init {
+        presenter.loadAttrs(context, attrs)
+        presenter.bindStyle()
+    }
+
+    fun setRadius(
+        cornerRadius: Float,
+        topLeft: Boolean,
+        topRight: Boolean,
+        bottomRight: Boolean,
+        bottomLeft: Boolean
+    ) {
+        presenter.setRadius(cornerRadius, topLeft, topRight, bottomRight, bottomLeft)
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        if (presenter.aspectRatio > 0) {
+            val width = measuredWidth
+            val height = (width / presenter.aspectRatio).toInt()
+            super.onMeasure(
+                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+            )
+        }
+        presenter.setupMeasure()
+    }
+
+    override fun draw(canvas: Canvas) {
+        presenter.drawClip(canvas)
+        super.draw(canvas)
+    }
+
+    fun changeColor(
+        @ColorRes backgroundNormalColorRes: Int, @ColorRes backgroundPressedColorRes: Int? = null
+    ) {
+        presenter.setupBackgroundDrawable(
+            ContextCompat.getColor(context, backgroundNormalColorRes),
+            if (backgroundPressedColorRes == null) null else ContextCompat.getColor(
+                context, backgroundPressedColorRes
+            )
+        )
+        presenter.bindStyle()
+    }
+}
