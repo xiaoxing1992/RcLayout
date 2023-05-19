@@ -55,6 +55,13 @@ open class CardFrameLayout @JvmOverloads constructor(
         presenter.drawStroke(canvas)
     }
 
+    fun setStrokeWidth(
+        cornerRadius: Float
+    ) {
+        presenter.changeStrokeWidth(cornerRadius)
+    }
+
+
     fun changeColor(
         @ColorRes backgroundNormalColorRes: Int,
         @ColorRes backgroundPressedColorRes: Int? = null,
